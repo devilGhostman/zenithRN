@@ -6,6 +6,7 @@ const ROUTES = {
   EXPLORE: 'explore',
   PROFILE: 'profile',
   MORE: 'more',
+  SHORT_REEL: 'short-reel',
   PLAYER: 'watch',
 } as const;
 

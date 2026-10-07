@@ -8,6 +8,7 @@ export type RootStackParamList = {
   [ROUTES.SEARCH]: undefined;
   [ROUTES.MY_LIST]: undefined;
   [ROUTES.MORE]: undefined;
+  [ROUTES.SHORT_REEL]: undefined;
   [ROUTES.PLAYER]: {id: string};
 };
 

@@ -19,6 +19,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
       [ROUTES.SEARCH]: 'search',
       [ROUTES.MY_LIST]: 'my-list',
       [ROUTES.MORE]: 'more',
+      [ROUTES.SHORT_REEL]: 'short-reel',
       [ROUTES.PLAYER]: 'watch/:id',
     },
   },

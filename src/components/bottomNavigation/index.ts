@@ -14,6 +14,9 @@ const FloatingBottomTabTemplate = lazy(() =>
 );
 
 
+const SuspendedDefaultBottomTabTemplate = suspendedTemplate(DefaultBottomTabTemplate);
+const SuspendedFloatingBottomTabTemplate = suspendedTemplate(FloatingBottomTabTemplate);
+
 export function getBottomTabTemplate(controlBar: unknown): BottomTabTemplate {
-  return controlBar !== 5 ? suspendedTemplate(FloatingBottomTabTemplate) : suspendedTemplate(DefaultBottomTabTemplate);
+  return controlBar !== 5 ? SuspendedFloatingBottomTabTemplate : SuspendedDefaultBottomTabTemplate;
 }

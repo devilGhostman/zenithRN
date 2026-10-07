@@ -26,7 +26,7 @@ function AppStackNavigator({
   tabBarOptions,
   ...rest
 }: AppStackNavigatorProps) {
-  const {state, describe, descriptors, navigation, NavigationContent} = useNavigationBuilder(StackRouter, {
+  const {state, describe, descriptors, navigation, render} = useNavigationBuilder(StackRouter, {
     id,
     initialRouteName,
     children,
@@ -34,8 +34,8 @@ function AppStackNavigator({
     screenOptions,
   } as never);
 
-  return (
-    <NavigationContent>
+  return render(
+    <>
       <NativeStackView
         {...rest}
         state={state}
@@ -46,7 +46,7 @@ function AppStackNavigator({
       {TabBar && tabBarOptions?.screens?.length ? (
         <TabBar navigation={navigation as AppTabBarProps['navigation']} state={state} tabBarOptions={tabBarOptions} />
       ) : null}
-    </NavigationContent>
+    </>,
   );
 }
 
