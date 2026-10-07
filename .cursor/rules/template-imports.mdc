@@ -1,0 +1,27 @@
+---
+description: Lazy-load screens and templates from their files, then wrap them with suspendedTemplate
+alwaysApply: true
+---
+
+# Screen and template imports
+
+Load each screen and each runtime template with `React.lazy` from its file, then wrap it once with `suspendedTemplate` from `@/utils`. Do not add a folder per template. Do not statically import every screen or template.
+
+```ts
+const HomeScreen = suspendedTemplate(lazy(() => import('@/screens/HomeScreen')));
+
+const DefaultBottomTabTemplate = suspendedTemplate(
+  lazy(() =>
+    import('@/components/bottomNavigation/templates/default.template').then((module) => ({
+      default: module.DefaultBottomTabTemplate,
+    })),
+  ),
+);
+```
+
+- Call `lazy` and `suspendedTemplate` once at module scope. Return that wrapped component from the selector.
+- A default export can be passed straight to `lazy(() => import('...'))`.
+- A named export must be mapped to `{default}` in `.then`. Do not add `export default` only to satisfy `lazy`.
+- Pass a fallback component as the second argument of `suspendedTemplate` when one should show. Otherwise the fallback is `null`.
+- A new screen or template is another `lazy` plus `suspendedTemplate` entry.
+- Do not lazy-load shared logic: player contract, engine, Redux slices, progress store, or screen hooks.

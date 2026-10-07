@@ -1,0 +1,15 @@
+---
+description: Import from folder barrels such as @/utils, not from files inside the folder
+alwaysApply: true
+---
+
+# Folder imports
+
+Import the folder, not a file inside it.
+
+- Good: `from '@/utils'`
+- Bad: `from '@/utils/nativeStorage.utility'`
+
+`@/utils` means `src/utils/index.ts`. If that `index.ts` is missing, create it and re-export every module in the folder.
+
+Do not add a mega `src/index.ts`.

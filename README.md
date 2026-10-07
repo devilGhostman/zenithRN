@@ -1,97 +1,74 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Zenith
 
-# Getting Started
+Bare **React Native CLI** app (no Expo) for iOS and Android.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+The display name is **Zenith**. The folder is `zenithRN` because a Next.js app already occupies `zenith` in this workspace.
 
-## Step 1: Start Metro
+## Stack
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+| Library | Role |
+| --- | --- |
+| React Native 0.87 | App runtime, New Architecture + Hermes |
+| Redux + Redux Toolkit | App state (`src/redux`) |
+| redux-persist | Persist selected reducers to MMKV |
+| React Navigation | Native stack + deep links |
+| react-native-video v7 | Native video playback |
+| @legendapp/list | Virtualized feed list |
+| Rozenite | DevTools panels for Redux, Query, navigation, network, MMKV |
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Run
 
 ```sh
-# Using npm
 npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
 npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# or
+cd ios && bundle install && bundle exec pod install && cd ..
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Debugging
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+`npm start` enables Rozenite. Open React Native DevTools (`j` in Metro) for Redux, TanStack Query, navigation, network, and MMKV.
 
-## Step 3: Modify your app
+## Redux persist
 
-Now that you have successfully run the app, let's make changes!
+Persisted slices are listed in `src/redux/store.ts`:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- `persistConfig.whitelist` — reducer keys to persist (`app` today)
+- `appPersistConfig.whitelist` — fields inside `app` (`appName`, `isMuted`)
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+`activeVideoId` is not persisted. Add a reducer name or field to those arrays to persist more state.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Deep linking
 
-## Congratulations! :tada:
+Custom scheme: `zenith://`
 
-You've successfully run and modified your React Native App. :partying_face:
+| URL | Screen |
+| --- | --- |
+| `zenith://` | Home |
+| `zenith://video/big-buck-bunny` | Video player |
 
-### Now what?
+Test on a simulator/emulator:
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+```sh
+# iOS
+xcrun simctl openurl booted "zenith://video/big-buck-bunny"
 
-# Troubleshooting
+# Android
+adb shell am start -W -a android.intent.action.VIEW -d "zenith://video/big-buck-bunny" com.zenith
+```
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+HTTPS prefixes (`https://zenith.app`) are mapped in `src/navigation/linking.ts`. For Universal Links / App Links, add Associated Domains on iOS and host Digital Asset Links on that domain.
 
-# Learn More
+## Project layout
 
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```
+src/
+  navigation/       stack navigator + linking config
+  redux/            store, persist whitelist, typed hooks, app slice
+  tanstackQuery/    QueryClient + provider
+  infrastructure/   video query/service
+  screens/          Home feed, Video player
+  components/       Video card
+  devtools/         Rozenite DevTools hooks
+```

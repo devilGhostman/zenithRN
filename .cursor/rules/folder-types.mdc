@@ -1,0 +1,15 @@
+---
+description: Put named types in src/types as foldername.types, not inside implementation files
+alwaysApply: true
+---
+
+# Folder types
+
+Named types for a `src` folder live in `src/types/<folder>.types.ts`. Import them from `@/types`.
+
+- Good: `BottomBarScreen` in `src/types/navigation.types.ts`, imported with `from '@/types'`
+- Bad: `export type BottomBarScreen` inside `src/navigation/customStackNavigator.tsx`
+
+`<folder>` is the top-level folder under `src` (`src/navigation` → `navigation.types.ts`). If that file is missing, create it and re-export it from `src/types/index.ts`.
+
+Do not add a mega `src/index.ts`.

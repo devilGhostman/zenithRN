@@ -1,4 +1,23 @@
 {
   "name": "Zenith",
-  "displayName": "Zenith"
+  "displayName": "Zenith",
+  "appId": "6810a92ebd31770007445c60",
+  "apiBaseUrl": "https://dev-apis.mogiio.com/",
+  "backgroundColor": "#000",
+  "react-native-google-mobile-ads": {
+      "android_app_id": "ca-app-pub-3940256099942544~3347511713",
+      "ios_app_id": "ca-app-pub-3940256099942544~1458002511"
+  },
+  "defaultHorizontalThumbnail": "https://cdn6.mogiio.com/61cac223a0286ccc5ff0643c/2022/07/19/horizontal-thumbnails/horizontal.png",
+  "defaultVerticalThumbnail": "https://cdn6.mogiio.com/61cac223a0286ccc5ff0643c/2022/07/19/vertical-thumbnails/vertical.png",
+  "appStoreThumbnail": "https://cdn6.mogiio.com/cheetaFiles/03a03a2023a12a54a03appStore.png",
+  "playStoreThumbnail": "https://cdn6.mogiio.com/cheetaFiles/03a03a2023a12a54a22playStore.png",
+  "appStoreIcon": "https://cdn6.mogiio.com/mogiDocs/9a4a2023a10a31a52aaPastedimage.png",
+  "playStoreIcon": "https://cdn6.mogiio.com/mogiDocs/9a1a2023a6a18a50aaPastedimage.png",
+  "defaultDomain": "savage.dev.mogiio.tv",
+  "defaultHost": "192.168.0.58",
+  "googleClientId": "227159758180-4343j4sf19g4q3q80k2rmhmd7n7bjco6.apps.googleusercontent.com",
+  "defaultLoadingSpinner": 8,
+  "showSplashVideo": false,
+  "splashVideoBackgroundColor": "#ffffff"
 }
