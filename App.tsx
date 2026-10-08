@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SplashGate} from '@/components';
 import {RootNavigator} from '@/navigation';
 import {ThemeWrapper, QueryProvider, ReduxProvider} from '@/infrastructure';
 
@@ -15,7 +16,9 @@ function App() {
           <RozeniteAppDevTools />
           <QueryProvider>
             <ThemeWrapper>
-              <RootNavigator />
+              <SplashGate>
+                {(initialUrl) => <RootNavigator initialUrl={initialUrl} />}
+              </SplashGate>
             </ThemeWrapper>
           </QueryProvider>
         </ReduxProvider>

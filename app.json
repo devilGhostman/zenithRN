@@ -3,11 +3,6 @@
   "displayName": "Zenith",
   "appId": "6810a92ebd31770007445c60",
   "apiBaseUrl": "https://dev-apis.mogiio.com/",
-  "backgroundColor": "#000",
-  "react-native-google-mobile-ads": {
-      "android_app_id": "ca-app-pub-3940256099942544~3347511713",
-      "ios_app_id": "ca-app-pub-3940256099942544~1458002511"
-  },
   "defaultHorizontalThumbnail": "https://cdn6.mogiio.com/61cac223a0286ccc5ff0643c/2022/07/19/horizontal-thumbnails/horizontal.png",
   "defaultVerticalThumbnail": "https://cdn6.mogiio.com/61cac223a0286ccc5ff0643c/2022/07/19/vertical-thumbnails/vertical.png",
   "appStoreThumbnail": "https://cdn6.mogiio.com/cheetaFiles/03a03a2023a12a54a03appStore.png",
@@ -19,5 +14,6 @@
   "googleClientId": "227159758180-4343j4sf19g4q3q80k2rmhmd7n7bjco6.apps.googleusercontent.com",
   "defaultLoadingSpinner": 8,
   "showSplashVideo": false,
-  "splashVideoBackgroundColor": "#ffffff"
+  "splashVideoBackgroundColor": "#ffffff",
+  "splashImageDurationMs": 2000
 }

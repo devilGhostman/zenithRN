@@ -3,6 +3,10 @@ import type {ParamListBase, StackNavigationState} from '@react-navigation/native
 import type {NativeStackNavigationOptions, NativeStackNavigatorProps} from '@react-navigation/native-stack';
 import {ROUTES} from '@/constants';
 
+export type RootNavigatorProps = {
+  initialUrl: string | null;
+};
+
 export type RootStackParamList = {
   [ROUTES.HOME]: undefined;
   [ROUTES.SEARCH]: undefined;

@@ -4,10 +4,10 @@ import {ROUTES} from '@/constants';
 import {useAppSelector} from '@/infrastructure/redux/hooks';
 import {getBottomTabTemplate} from '@/components/bottomNavigation';
 import {createAppStackNavigator} from '@/navigation/customStackNavigator';
-import {linking} from '@/navigation/linking';
-import {BOTTOM_SCREENS, MAIN_SCREENS,getBottomScreens} from '@/navigation/screens.constant';
+import {createLinking} from '@/navigation/linking';
+import {MAIN_SCREENS, getBottomScreens} from '@/navigation/screens.constant';
 import type {Screen} from '@/navigation/screen';
-import type {RootStackParamList} from '@/types';
+import type {RootNavigatorProps, RootStackParamList} from '@/types';
 
 const Stack = createAppStackNavigator();
 
@@ -45,8 +45,9 @@ function renderTabScreen(screen: Screen) {
   );
 }
 
-export function RootNavigator() {
+export function RootNavigator({initialUrl}: RootNavigatorProps) {
   const navigationRef = useRef<NavigationContainerRef<RootStackParamList> | null>(null);
+  const linking = useRef(createLinking(initialUrl)).current;
   const controlBar = useAppSelector((state) => state.wacConfig.themeConfig?.controlBar);
   const TabBar = getBottomTabTemplate(controlBar);
 

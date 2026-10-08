@@ -5,11 +5,7 @@ import type {RootStackParamList} from '@/types';
 const DEEP_LINK_SCHEME = 'zenith';
 const DEEP_LINK_HOST = 'zenith.app';
 
-const DEEP_LINK_PREFIXES = [
-  `${DEEP_LINK_SCHEME}://`,
-  `https://${DEEP_LINK_HOST}`,
-  `https://www.${DEEP_LINK_HOST}`,
-];
+const DEEP_LINK_PREFIXES = [`${DEEP_LINK_SCHEME}://`, `https://${DEEP_LINK_HOST}`, `https://www.${DEEP_LINK_HOST}`];
 
 export const linking: LinkingOptions<RootStackParamList> = {
   prefixes: DEEP_LINK_PREFIXES,
@@ -24,3 +20,14 @@ export const linking: LinkingOptions<RootStackParamList> = {
     },
   },
 };
+
+export function createLinking(initialUrl: string | null): LinkingOptions<RootStackParamList> {
+  if (initialUrl == null) {
+    return linking;
+  }
+
+  return {
+    ...linking,
+    getInitialURL: () => initialUrl,
+  };
+}
